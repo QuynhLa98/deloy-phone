@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Manager Product</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <!-- font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="display-4 my-4 align-items-center">
+        Quản Lý Thông Tin Sản Phẩm
+      </header>
+      <main>
+        <!-- tapane  -->
+        <div class="tab-content">
+          <!-- danh sách sản phẩm  -->
+          <div role="tabpanel" class="tab-pane in active">
+            <div class="row">
+              <div class="col-md-4">
+                <!-- button thêm mới  -->
+                <div class="form-group">
+                  <button
+                    id="btnThemSP"
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    style="
+                      background: rgb(83, 110, 174);
+                      background: linear-gradient(
+                        90deg,
+                        rgba(83, 110, 174, 1) 0%,
+                        rgba(89, 122, 161, 1) 50%,
+                        rgba(171, 0, 255, 1) 100%
+                      );
+                    "
+                  >
+                    <i class="fa fa-plus mr-1"></i>
+                    Thêm Sản Phẩm
+                  </button>
+                </div>
+
+                <div class="form-group">
+                  <select id="locGiaSP" onchange="locGiaSP()">
+                    <option value="locSP">Lọc giá (toàn bộ)</option>
+                    <option value="nhoDenLon">Nhỏ đến lớn</option>
+                    <option value="lonDenNho">lớn đến nhỏ</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <!-- tìm sản phẩm  -->
+                <div class="input-group mb-3">
+                  <div class="input-group-append">
+                    <span class="input-group-text" style="height: 100%">
+                      <i class="fa fa-search"></i>
+                    </span>
+                  </div>
+                  <input
+                    id="timKiemSP"
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập Từ Khóa Tìm Kiếm"
+                    aria-label="Recipient's username"
+                    aria-describedby="basic-addon2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer>
+        <div id="tblSanPham">
+          <!-- table sản phẩm  -->
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>STT</th>
+                <th>TÊN</th>
+                <th>GIÁ</th>
+                <th>MÀN HÌNH</th>
+                <th>CAMERA SAU</th>
+                <th>CAMERA TRƯỚC</th>
+                <th>HÌNH ẢNH</th>
+                <th>MÔ TẢ</th>
+                <th>TYPE</th>
+                <th>ACTION</th>
+              </tr>
+            </thead>
+            <tbody id="tblDanhSachSP"></tbody>
+          </table>
+        </div>
+      </footer>
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title fs-5" id="exampleModalLabel">
+                Thêm Sản Phẩm
+              </h4>
+              <button
+                id="btnClose"
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Tên Sản Phẩm</label>
+                <input
+                  id="TenSP"
+                  class="form-control"
+                  placeholder="Nhập vào tên sản phẩm"
+                />
+              </div>
+              <div
+                class="text-danger"
+                style="display: none"
+                id="errorTenSP"
+              ></div>
+              <div class="form-group">
+                <label>Giá Sản Phẩm</label>
+                <input
+                  id="GiaSP"
+                  class="form-control"
+                  placeholder="Nhập vào giá sản phẩm"
+                />
+              </div>
+              <div
+                class="text-danger"
+                style="display: none"
+                id="errorGiaSP"
+              ></div>
+              <div class="form-group">
+                <label>kích thước màn hình</label>
+                <input
+                  id="ManHinhSP"
+                  class="form-control"
+                  placeholder="Nhập vào kích thước màn hình(đơn vị in)"
+                />
+              </div>
+              <div
+                class="text-danger"
+                style="display: none"
+                id="errorManHinhSP"
+              ></div>
+              <div class="form-group">
+                <label>thông số camera sau</label>
+                <input
+                  id="CamSauSP"
+                  class="form-control"
+                  placeholder="Nhập vào thông số camera sau"
+                />
+              </div>
+              <div
+                class="text-danger"
+                style="display: none"
+                id="errorCamSauSP"
+              ></div>
+              <div class="form-group">
+                <label>thông số camera trước</label>
+                <input
+                  id="CamTruocSP"
+                  class="form-control"
+                  placeholder="Nhập vào thông số camera trước"
+                />
+              </div>
+              <div
+                class="text-danger"
+                style="display: none"
+                id="errorCamTruocSP"
+              ></div>
+              <div class="form-group">
+                <label>Hình Ảnh</label>
+                <input
+                  id="HinhAnhSP"
+                  class="form-control"
+                  placeholder="Nhập vào hình ảnh sản phẩm"
+                />
+              </div>
+              <div
+                class="text-danger"
+                style="display: none"
+                id="errorHinhAnhSP"
+              ></div>
+              <div class="form-group">
+                <label>Mô Tả Sản Phẩm</label>
+                <input
+                  id="MoTaSP"
+                  class="form-control"
+                  placeholder="Nhập vào mô tả sản phẩm"
+                />
+              </div>
+              <div
+                class="text-danger"
+                style="display: none"
+                id="errorMoTaSP"
+              ></div>
+              <div class="form-group">
+                <label>Type</label>
+                <select class="form-control" id="TypeSP">
+                  <option value="0">Vui lòng chọn type</option>
+                  <option value="Samsung">Samsung</option>
+                  <option value="Iphone">Iphone</option>
+                </select>
+                <div
+                  class="text-danger"
+                  style="display: none"
+                  id="errorTypeSP"
+                ></div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <!-- them button trong js  -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+      crossorigin="anonymous"
+    ></script>
+    <!-- axios  -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+      integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- ---------------------------js---------------------- -->
+    <script src="./js/service/api.js"></script>
+    <script src="./js/model/product.js"></script>
+    <script src="./js/model/validation.js"></script>
+    <script src="./js/controller/indexManager.js"></script>
+    <!-- <script src="./js/controller/main.js"></script> -->
+  </body>
+</html>

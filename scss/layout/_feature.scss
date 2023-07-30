@@ -1,0 +1,58 @@
+.title__product {
+  font: {
+    size: $fs-8;
+    weight: $fw-2;
+    family: $robo;
+  }
+  text-align: center;
+  margin: $mg-1 auto;
+}
+
+.card-img-top {
+  width: 70%;
+  margin-top: $mg-6;
+  margin-bottom: $mg-5;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row {
+    padding-bottom: $pd-1;
+}
+
+.card-body {
+  .card-title {
+    font: {
+      size: $fs-2;
+      weight: $fw-2;
+      family: $robo;
+    }
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: $mg-5;
+  }
+  .gia {
+    display: flex;
+    justify-content: center;
+  }
+  .gia__ban {
+    font: {
+      size: $fs-9;
+      weight: $fw-2;
+      family: $robo;
+    }
+    margin: $mg-0 $mg-5;
+  }
+  .gia__goc {
+    font: {
+      size: $fs-2;
+      style: italic;
+      family: $robo;
+    }
+    margin: $mg-0 $mg-5;
+  }
+}
+
+
+
+
